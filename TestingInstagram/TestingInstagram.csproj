@@ -130,11 +130,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginToAccount.feature</DependentUpon>
     </Compile>
-    <Compile Include="FeaturesUI\TestingUI.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestingUI.feature</DependentUpon>
-    </Compile>
     <Compile Include="FeaturesUI\WrongPassword.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,7 +141,6 @@
     <Compile Include="StepsUI\Hooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StepsUI\LoginToAccountSteps.cs" />
-    <Compile Include="StepsUI\TestingUISteps.cs" />
     <Compile Include="StepsUI\WrongPasswordSteps.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,10 +152,6 @@
     <None Include="FeaturesUI\LoginToAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LoginToAccount.feature.cs</LastGenOutput>
-    </None>
-    <None Include="FeaturesUI\TestingUI.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>TestingUI.feature.cs</LastGenOutput>
     </None>
     <None Include="FeaturesUI\WrongPassword.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
