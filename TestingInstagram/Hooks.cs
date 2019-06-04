@@ -2,6 +2,7 @@
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using BoDi;
+using DotLiquid;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -23,15 +24,17 @@ namespace TestingInstagram
 
         private readonly IObjectContainer _objectContainer;
         private IWebDriver _driver;
-
+        
         public Hooks(IObjectContainer objectContainer)
         {
+            
             _objectContainer = objectContainer;
         }
 
         [BeforeTestRun]
         public static void InitializeReport()
         {
+           
             var htmlReporter = new ExtentHtmlReporter(@"C:\Users\User\source\repos\TestingInstagram\ExtentReport.html");
             htmlReporter.Configuration().Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             extent = new ExtentReports();
@@ -68,13 +71,13 @@ namespace TestingInstagram
             if (ScenarioContext.Current.TestError != null)
             {
                 if (stepType == "Given")
-                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.StackTrace);
+                    scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.StackTrace).Log(Status.Fail,"Mylog");
                 else if (stepType == "When")
-                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.StackTrace);
+                    scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message).Log(Status.Fail, "Mylog");
 
                 else if (stepType == "Then")
-                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message);
-            
+                    scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(ScenarioContext.Current.TestError.Message).Log(Status.Fail, "Mylog");
+
             }
 
 
@@ -88,8 +91,9 @@ namespace TestingInstagram
         [BeforeScenario("mytag","login", "wrongPassword")]
         public void Initialize()
         {
-
-            FirefoxDriverService servise = FirefoxDriverService.CreateDefaultService(@"C:\Drivers", "geckodriver.exe");
+            
+            var path = System.IO.Path.GetFullPath(@"C:\Users\User\source\repos\TestingInstagram\packages\Selenium.WebDriver.GeckoDriver.0.24.0\driver\win64");
+            FirefoxDriverService servise = FirefoxDriverService.CreateDefaultService(path, "geckodriver.exe");
             _driver = new FirefoxDriver(servise);
             _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
            

@@ -42,14 +42,13 @@ namespace TestingInstagram
         [Then(@"Alert error message")]
         public void ThenAlertErrorMessage()
         {
-            //var element = _driver.FindElement(By.XPath("/*[@id='ssfErrorAlert'][contains(@class, 'Ma93n') and normalize-space(text() = 'Це ім'я вже використовується. Спробуйте інше.')]"));
-            var element = _driver.FindElement(By.XPath("/html/body/span/section/main/article/div[2]/div[1]/div/form/div[8]/p[contains(text(),'Це ім'я вже використовується. Спробуйте інше.')]"));
-            //var element = _driver.FindElement(By.XPath("//*[@id='ssfErrorAlert']/p[contains(text(),'Це ім'я вже використовується. Спробуйте інше.')]"));
-            Assert.Multiple(() =>
+            
+            var element = _driver.FindElement(By.XPath("//p[@id='ssfErrorAlert']"));
+            
             {
                 Assert.That(element.Text, Is.Not.Null, "Header text not found !!!");
                 //Assert.That(element.Text, Is.Null, "Header text not found !!!");
-            });
+            }
         }
     }
 }

@@ -9,3 +9,6 @@ Scenario: Login to account
 	When I enter following creadentids
 	And I click button registration
 	Then The profile page will open
+	
+	
+	

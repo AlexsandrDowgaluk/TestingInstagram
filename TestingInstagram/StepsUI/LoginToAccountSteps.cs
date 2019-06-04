@@ -39,17 +39,27 @@ namespace TestingInstagram.StepsUI
         [When(@"I click button registration")]
         public void WhenIClickButtonRegistration()
         {
-           _driver.FindElement(By.XPath("/html/body/span/section/main/article/div[2]/div[1]/div/form/div[7]/div/button")).Click();
-            Thread.Sleep(2000);
+           //_driver.FindElement(By.XPath("/html/body/span/section/main/article/div[2]/div[1]/div/form/div[7]/div/button")).Click();
+           _driver.FindElement(By.XPath("//button[@type='submit']")).Click();
+            Thread.Sleep(4000);
+            _driver.FindElement(By.CssSelector(".HoLwm")).Click();
+            Thread.Sleep(4000);
             
-           
+            
+            _driver.FindElement(By.XPath("//div[3]/a/span")).Click();
+            Thread.Sleep(2000);
+
+
         }
         
         [Then(@"The profile page will open")]
         public void ThenTheProfilePageWillOpen()
         {
-            
-            var element = _driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[3]/button[2][contains(@class, 'aOOlW   HoLwm ') and normalize-space(text() = 'Не зараз')]"));
+            Thread.Sleep(2000);
+            //var element = _driver.FindElement(By.XPath("//button[contains(.,'Не зараз')]"));
+            var element = _driver.FindElement(By.XPath("//h1[contains(.,'alexanderdowgaluk')]"));
+
+
             Assert.Multiple(() =>
             {
                 Assert.That(element.Text, Is.Not.Null, "Header text not found !!!");
